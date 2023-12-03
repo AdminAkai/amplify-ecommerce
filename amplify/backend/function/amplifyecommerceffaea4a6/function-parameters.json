@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "storage": {
+      "Product:@model(appsync)": [
+        "create"
+      ]
+    }
+  },
+  "lambdaLayers": [],
+  "environmentVariableList": [
+    {
+      "cloudFormationParameterName": "viteStripeKey",
+      "environmentVariableName": "VITE_STRIPE_KEY"
+    }
+  ]
+}

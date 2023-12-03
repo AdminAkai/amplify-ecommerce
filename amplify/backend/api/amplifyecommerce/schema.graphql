@@ -1,0 +1,18 @@
+# all models in this schema. Learn more about authorization rules here: https://docs.amplify.aws/cli/graphql/authorization-rules
+
+type Product 
+  @model 
+  @auth(
+    rules: [
+      { allow: public, provider: iam, operations: [read] }
+      { allow: owner }
+      { allow: groups, groups: ["admin"] }
+    ]
+  ) {
+    id: ID!
+    name: String!
+    description: String!
+    price: Int! #stored in cents
+    imageID: String!
+    priceID: String
+}

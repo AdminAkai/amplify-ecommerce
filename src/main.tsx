@@ -8,42 +8,41 @@ import { PersistGate } from 'redux-persist/integration/react'
 //   ApolloProvider,
 //   createHttpLink,
 // } from '@apollo/client'
-// import { setContext } from '@apollo/client/link/context'
+import { Amplify } from 'aws-amplify'
+import { generateClient } from 'aws-amplify/api'
 
 import store, { persistor } from 'src/shared/redux/store.ts'
 
 import App from './App.tsx'
 
-import './assets/fonts/stylesheet.css'
+import config from './aws-exports'
 
+import './assets/fonts/stylesheet.css'
 import './main.css'
 
+Amplify.configure(config)
+
+export const client = generateClient()
+
 // const httpLink = createHttpLink({
-//   uri: 'https://api.github.com/graphql',
+//   uri: config.aws_appsync_graphqlEndpoint,
 // })
 
 // const authLink = setContext((_, { headers }) => {
 //   return {
 //     headers: {
 //       ...headers,
-//       authorization: `Bearer ${import.meta.env.VITE_GITHUB_API}`,
+//       authorization: `Bearer ${config.oauth}`,
 //     },
 //   }
 // })
 
-// export const client = new ApolloClient({
-//   link: authLink.concat(httpLink),
-//   cache: new InMemoryCache(),
-// })
-
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    {/* <ApolloProvider client={client}> */}
     <Provider store={store}>
       <PersistGate persistor={persistor}>
         <App />
       </PersistGate>
     </Provider>
-    {/* </ApolloProvider> */}
   </React.StrictMode>
 )

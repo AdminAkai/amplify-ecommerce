@@ -1,0 +1,11 @@
+{
+  "AppSyncApiName": "amplifyecommerce",
+  "DynamoDBBillingMode": "PAY_PER_REQUEST",
+  "DynamoDBEnableServerSideEncryption": false,
+  "AuthCognitoUserPoolId": {
+    "Fn::GetAtt": [
+      "authamplifyecommerce6690af68",
+      "Outputs.UserPoolId"
+    ]
+  }
+}
